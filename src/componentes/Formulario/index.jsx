@@ -5,8 +5,6 @@ import Botao from "../Botao";
 import { useState } from "react";
 
 const Formulario = (props) => {
-  
-
   const [nome, setNome] = useState("");
   const [cargo, setCargo] = useState("");
   const [imagem, setImagem] = useState("");
@@ -14,13 +12,16 @@ const Formulario = (props) => {
 
   const aoSalvar = (evento) => {
     evento.preventDefault();
-    console.log("Form foi submetido =>", nome, cargo, imagem, time);
     props.aoColaboradorCadastrado({
       nome,
       cargo,
       imagem,
-      time
-    })
+      time,
+    });
+    setNome("");
+    setCargo("");
+    setImagem("");
+    setTime("");
   };
   return (
     <section className="formulario">
@@ -49,7 +50,7 @@ const Formulario = (props) => {
         />
         <ListaSuspensa
           label="Time"
-          itens={times}
+          itens={props.times}
           valor={time}
           aoAlterado={(valor) => setTime(valor)}
         />
